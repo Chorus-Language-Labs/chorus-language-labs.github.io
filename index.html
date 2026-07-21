@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chorus Language Labs</title>
+<meta name="description" content="Chorus Language Labs uses computational linguistics to build AI for the world's underserved and endangered languages — the ones frontier models leave behind." />
+<meta name="theme-color" content="#0b0b0d" />
+<meta property="og:title" content="Chorus Language Labs" />
+<meta property="og:description" content="Every language deserves a voice. Computational linguistics for the languages frontier AI leaves behind." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230b0b0d'/%3E%3Cg stroke='%23e8e2d6' stroke-width='6' stroke-linecap='round'%3E%3Cline x1='30' y1='58' x2='30' y2='42'/%3E%3Cline x1='43' y1='68' x2='43' y2='32'/%3E%3Cline x1='57' y1='72' x2='57' y2='28'/%3E%3Cline x1='70' y1='64' x2='70' y2='36'/%3E%3C/g%3E%3C/svg%3E" />
+<style>
+  :root{
+    --bg:#0b0b0d;
+    --ink:#efe9dd;
+    --muted:#9a968c;
+    --faint:#6b6862;
+    --accent:#c9a86a;
+    --line:rgba(233,227,214,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    line-height:1.6;
+    min-height:100dvh;
+    display:flex;
+    flex-direction:column;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  canvas#veil{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    pointer-events:none;
+    opacity:.5;
+  }
+  .wrap{
+    position:relative;
+    z-index:1;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    max-width:760px;
+    width:100%;
+    margin:0 auto;
+    padding:clamp(2rem,7vw,6rem) clamp(1.4rem,6vw,2.5rem);
+  }
+  .brand{
+    font-family:"Söhne","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:.72rem;
+    letter-spacing:.34em;
+    text-transform:uppercase;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    gap:.85rem;
+    margin-bottom:clamp(2.4rem,9vh,4.5rem);
+    font-weight:500;
+  }
+  .brand svg{flex:none}
+  h1{
+    font-weight:400;
+    font-size:clamp(2.15rem,6.4vw,4rem);
+    line-height:1.08;
+    letter-spacing:-.015em;
+    margin-bottom:1.6rem;
+  }
+  h1 .em{font-style:italic;color:var(--accent)}
+  .lede{
+    font-size:clamp(1.12rem,2.4vw,1.4rem);
+    color:#d8d2c6;
+    max-width:34em;
+  }
+  .stat{
+    color:var(--muted);
+    font-size:clamp(1.02rem,2.1vw,1.22rem);
+    margin-top:1.5rem;
+    max-width:34em;
+  }
+  .stat b{color:var(--ink);font-weight:400;font-style:italic}
+  .rule{
+    height:1px;
+    background:var(--line);
+    margin:clamp(2.4rem,7vh,3.6rem) 0 clamp(1.6rem,4vh,2.2rem);
+    max-width:34em;
+  }
+  .foot{
+    font-family:"Söhne","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:.9rem 2rem;
+    font-size:.94rem;
+  }
+  .foot .item{display:flex;align-items:baseline;gap:.7rem}
+  .foot .label{
+    color:var(--faint);
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    font-size:.7rem;
+    transform:translateY(-1px);
+  }
+  a.mail{
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid rgba(201,168,106,.45);
+    padding-bottom:1px;
+    transition:border-color .25s,color .25s;
+  }
+  a.mail:hover{color:var(--accent);border-color:var(--accent)}
+  .links{display:flex;align-items:center;gap:.4rem}
+  a.icon{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    color:var(--muted);
+    text-decoration:none;
+    padding:.3rem .55rem;
+    border-radius:7px;
+    transition:color .25s,background .25s;
+  }
+  a.icon svg{fill:currentColor;flex:none}
+  a.icon:hover{color:var(--ink);background:rgba(233,227,214,.05)}
+  a.icon .txt{font-size:.86rem}
+  @media (max-width:520px){ a.icon .txt{display:none} }
+  @media (prefers-reduced-motion:reduce){
+    canvas#veil{display:none}
+  }
+</style>
+</head>
+<body>
+<canvas id="veil" aria-hidden="true"></canvas>
+<main class="wrap">
+  <div class="brand">
+    <svg width="20" height="20" viewBox="0 0 100 100" aria-hidden="true">
+      <g stroke="#c9a86a" stroke-width="7" stroke-linecap="round">
+        <line x1="18" y1="60" x2="18" y2="40"/>
+        <line x1="34" y1="72" x2="34" y2="28"/>
+        <line x1="50" y1="78" x2="50" y2="22"/>
+        <line x1="66" y1="68" x2="66" y2="32"/>
+        <line x1="82" y1="58" x2="82" y2="42"/>
+      </g>
+    </svg>
+    Chorus Language Labs
+  </div>
+
+  <h1>Every language<br>deserves a <span class="em">voice</span>.</h1>
+
+  <p class="lede">
+    Chorus Language Labs uses computational linguistics to build AI for the
+    languages frontier models leave behind.
+  </p>
+
+  <p class="stat">
+    The best models serve a few hundred languages. The world speaks
+    <b>seven thousand</b>. We work at that edge — giving underserved and
+    endangered languages the tools, and the future, they've been denied.
+  </p>
+
+  <div class="rule"></div>
+
+  <div class="foot">
+    <div class="item">
+      <span class="label">Contact</span>
+      <a class="mail" href="mailto:admin@choruslanguagelabs.org">admin@choruslanguagelabs.org</a>
+    </div>
+    <div class="links">
+      <a class="icon" href="https://github.com/Chorus-Language-Labs" target="_blank" rel="noopener" aria-label="Chorus Language Labs on GitHub">
+        <svg width="17" height="17" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        <span class="txt">GitHub</span>
+      </a>
+      <a class="icon" href="https://huggingface.co/choruslanguagelabs" target="_blank" rel="noopener" aria-label="Chorus Language Labs on Hugging Face">
+        <svg width="19" height="19" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5.5c-5.52 0-10 4.48-10 10 0 1.4.29 2.73.81 3.94a2.2 2.2 0 0 0-.9.86 2.28 2.28 0 0 0-1.02-.9 2.2 2.2 0 0 0-2.9 1.2c-.42 1.02.02 2.18.98 2.7-.5.36-.76.99-.6 1.63.18.75.86 1.24 1.6 1.23-.13.4-.1.85.12 1.25.4.72 1.28 1 2.02.66l.06-.03c.9.5 1.93.8 3.02.86.55 1.02 1.63 1.71 2.87 1.71h6c1.24 0 2.32-.69 2.87-1.71 1.09-.06 2.12-.36 3.02-.86l.06.03c.74.34 1.62.06 2.02-.66.22-.4.25-.85.12-1.25.74.01 1.42-.48 1.6-1.23.16-.64-.1-1.27-.6-1.63.96-.52 1.4-1.68.98-2.7a2.2 2.2 0 0 0-2.9-1.2 2.28 2.28 0 0 0-1.02.9 2.2 2.2 0 0 0-.9-.86c.52-1.21.81-2.54.81-3.94 0-5.52-4.48-10-10-10Zm-4 8a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm8 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm-9.2 5.3c.3-.04.6.1.77.38.9 1.46 2.5 2.32 4.43 2.32s3.53-.86 4.43-2.32a.75.75 0 1 1 1.28.78c-1.17 1.92-3.28 3.04-5.71 3.04s-4.54-1.12-5.71-3.04a.75.75 0 0 1 .5-1.14l.01-.02Z"/></svg>
+        <span class="txt">Hugging Face</span>
+      </a>
+    </div>
+  </div>
+</main>
+
+<script>
+// A faint "chorus" of glyphs from the world's writing systems, drifting upward.
+(function(){
+  var c = document.getElementById('veil');
+  if(!c) return;
+  var ctx = c.getContext('2d');
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var W, H;
+  // Glyphs drawn from many living and endangered scripts.
+  var glyphs = ("ᚦᚱᛁ አማ ᜃᜎ ꯑꯓ ᨀᨈ ትግ འབ ᏣᎳᎩ ꆈꌠ わ 语 ħ ŋ ʔ ā ō ū あ ᓂ ᐊ თ ᐁ ਪੰ ಕ த ᱛᱟ ‌नि ⵜⴰ ᬅᬆ ᮞᮥ")
+    .split(/\s+/).filter(Boolean);
+  var motes = [];
+  function resize(){
+    W = c.width = Math.floor(innerWidth * dpr);
+    H = c.height = Math.floor(innerHeight * dpr);
+    c.style.width = innerWidth+'px';
+    c.style.height = innerHeight+'px';
+    var count = Math.round(Math.min(46, (innerWidth*innerHeight)/26000));
+    motes = [];
+    for(var i=0;i<count;i++) motes.push(spawn(true));
+  }
+  function rand(a,b){ return a + (b-a)*fakeRand(); }
+  // deterministic-ish PRNG seeded per-load (Math.random is fine in the browser)
+  function fakeRand(){ return Math.random(); }
+  function spawn(anywhere){
+    return {
+      x: rand(0, W),
+      y: anywhere ? rand(0, H) : H + rand(10,80),
+      s: rand(13, 30) * dpr,
+      g: glyphs[Math.floor(rand(0,glyphs.length))],
+      a: rand(.04, .16),
+      vy: rand(.08, .26) * dpr,
+      drift: rand(-.12,.12) * dpr,
+      tw: rand(0, Math.PI*2)
+    };
+  }
+  var last = 0;
+  function frame(t){
+    var dt = Math.min(50, t - last); last = t;
+    ctx.clearRect(0,0,W,H);
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    for(var i=0;i<motes.length;i++){
+      var m = motes[i];
+      m.y -= m.vy * (dt/16);
+      m.x += m.drift * (dt/16);
+      m.tw += .01;
+      if(m.y < -40){ motes[i] = spawn(false); continue; }
+      var flick = m.a * (0.7 + 0.3*Math.sin(m.tw));
+      ctx.font = m.s + 'px "Noto Sans", system-ui, serif';
+      ctx.fillStyle = 'rgba(233,227,214,'+flick.toFixed(3)+')';
+      ctx.fillText(m.g, m.x, m.y);
+    }
+    requestAnimationFrame(frame);
+  }
+  resize();
+  addEventListener('resize', resize, {passive:true});
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
