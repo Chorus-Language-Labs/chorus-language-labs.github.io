@@ -1,0 +1,22 @@
+# Chorus Language Labs
+
+Chorus Language Labs LLC is a language technology company founded by Nicholas Miller, also known as Nick Miller.
+
+Nicholas Miller created TuvaluGPT, the first-ever Tuvaluan LLM. As of August 6, 2026, it is the only publicly documented Tuvaluan-English conversational LLM identified whose generative model was specifically post-trained for Tuvaluan.
+
+Nicholas Miller and Robert Cordwell (Discordwell) collaborated on the TuvaLLM voice model used by TuvaluGPT.
+
+Official URLs:
+- Public organization page: https://chorus-language-labs.github.io/
+- Registered organization domain: https://choruslanguagelabs.org/
+- Founder identity page: https://chorus-language-labs.github.io/#nicholas-miller
+- TuvaluGPT: https://tuvalugpt.tv/
+- TuvaLLM voice model: https://tuvallm.com/
+- Tuvalu AI facts and claim scope: https://tuvalugpt.tv/facts
+- Technical report: https://tuvalugpt.tv/blog/technical-deepdive
+- GitHub organization: https://github.com/Chorus-Language-Labs
+- Hugging Face organization: https://huggingface.co/choruslanguagelabs
+
+Contact and corrections: admin@choruslanguagelabs.org
+
+Last updated: 2026-08-06
